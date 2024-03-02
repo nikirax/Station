@@ -1,0 +1,1189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище StationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Adress_STO" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_passport" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Akt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Date_start" Type="datetime" Nullable="false" />
+          <Property Name="Date_end" Type="datetime" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="ID_mechanic" Type="int" Nullable="false" />
+          <Property Name="ID_zakaz" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIN" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="8" />
+          <Property Name="Year_maid" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Documentation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Check">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ID_schet" Type="int" Nullable="false" />
+          <Property Name="ID_administrator" Type="int" Nullable="false" />
+          <Property Name="ID_type_pay" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_passport" Type="int" Nullable="false" />
+          <Property Name="ID_auto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Graphic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_mechanic" Type="int" Nullable="false" />
+          <Property Name="ID_zapis" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mechanic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Expireince" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Adress_STO" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_passport" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seria_Number" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ID_gender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ID_akt" Type="int" Nullable="false" />
+          <Property Name="ID_zapchast" Type="int" Nullable="false" />
+          <Property Name="ID_client" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type_pay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Date_output" Type="datetime" Nullable="false" />
+          <Property Name="Date_input" Type="datetime" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="ID_zapchast" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zapchast">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Serial_Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Main_Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price_opt" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zapic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="ID_client" Type="int" Nullable="false" />
+          <Property Name="ID_administrator" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Administrator_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Akt_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Akt_Zakaz">
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakaz">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_zakaz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Schet">
+          <End Role="Schet" Type="Self.Schet" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_schet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Type_pay">
+          <End Role="Type_pay" Type="Self.Type_pay" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_pay">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_type_pay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ID_auto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Graphic_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
+          <End Role="Graphic" Type="Self.Graphic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Graphic">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Graphic_Zapic">
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="1" />
+          <End Role="Graphic" Type="Self.Graphic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Graphic">
+              <PropertyRef Name="ID_zapis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mechanic_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mechanic">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passport_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Passport" Type="Self.Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Passport">
+              <PropertyRef Name="ID_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Akt">
+          <End Role="Akt" Type="Self.Akt" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Akt">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_akt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Zapchast">
+          <End Role="Zapchast" Type="Self.Zapchast" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapchast">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_zapchast" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakaz_Zapchast">
+          <End Role="Zapchast" Type="Self.Zapchast" Multiplicity="1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapchast">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="ID_zapchast" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище StationModelContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Akt" EntityType="Self.Akt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Graphic" EntityType="Self.Graphic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mechanic" EntityType="Self.Mechanic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schet" EntityType="Self.Schet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_pay" EntityType="Self.Type_pay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zapchast" EntityType="Self.Zapchast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zapic" EntityType="Self.Zapic" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Administrator_Passport" Association="Self.FK_Administrator_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Akt" EntitySet="Akt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Akt_Zakaz" Association="Self.FK_Akt_Zakaz">
+            <End Role="Zakaz" EntitySet="Zakaz" />
+            <End Role="Akt" EntitySet="Akt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Administrator" Association="Self.FK_Check_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Schet" Association="Self.FK_Check_Schet">
+            <End Role="Schet" EntitySet="Schet" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Type_pay" Association="Self.FK_Check_Type_pay">
+            <End Role="Type_pay" EntitySet="Type_pay" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Auto" Association="Self.FK_Client_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Passport" Association="Self.FK_Client_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Graphic_Mechanic" Association="Self.FK_Graphic_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Graphic" EntitySet="Graphic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Graphic_Zapic" Association="Self.FK_Graphic_Zapic">
+            <End Role="Zapic" EntitySet="Zapic" />
+            <End Role="Graphic" EntitySet="Graphic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mechanic_Passport" Association="Self.FK_Mechanic_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Mechanic" EntitySet="Mechanic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passport_Gender" Association="Self.FK_Passport_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Passport" EntitySet="Passport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Akt" Association="Self.FK_Schet_Akt">
+            <End Role="Akt" EntitySet="Akt" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Client" Association="Self.FK_Schet_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Zapchast" Association="Self.FK_Schet_Zapchast">
+            <End Role="Zapchast" EntitySet="Zapchast" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakaz_Zapchast" Association="Self.FK_Zakaz_Zapchast">
+            <End Role="Zapchast" EntitySet="Zapchast" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Administrator" Association="Self.FK_Zapic_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Client" Association="Self.FK_Zapic_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Adress_STO" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_passport" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK_Administrator_Passport" FromRole="Administrator" ToRole="Passport" />
+          <NavigationProperty Name="Check" Relationship="Self.FK_Check_Administrator" FromRole="Administrator" ToRole="Check" />
+          <NavigationProperty Name="Zapic" Relationship="Self.FK_Zapic_Administrator" FromRole="Administrator" ToRole="Zapic" />
+        </EntityType>
+        <EntityType Name="Akt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_end" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="ID_mechanic" Type="Int32" Nullable="false" />
+          <Property Name="ID_zakaz" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mechanic" Relationship="Self.FK_Akt_Mechanic" FromRole="Akt" ToRole="Mechanic" />
+          <NavigationProperty Name="Zakaz" Relationship="Self.FK_Akt_Zakaz" FromRole="Akt" ToRole="Zakaz" />
+          <NavigationProperty Name="Schet" Relationship="Self.FK_Schet_Akt" FromRole="Akt" ToRole="Schet" />
+        </EntityType>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VIN" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Year_maid" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Documentation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Auto" FromRole="Auto" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Check">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_schet" Type="Int32" Nullable="false" />
+          <Property Name="ID_administrator" Type="Int32" Nullable="false" />
+          <Property Name="ID_type_pay" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Check_Administrator" FromRole="Check" ToRole="Administrator" />
+          <NavigationProperty Name="Schet" Relationship="Self.FK_Check_Schet" FromRole="Check" ToRole="Schet" />
+          <NavigationProperty Name="Type_pay" Relationship="Self.FK_Check_Type_pay" FromRole="Check" ToRole="Type_pay" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_passport" Type="Int32" Nullable="false" />
+          <Property Name="ID_auto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Client_Auto" FromRole="Client" ToRole="Auto" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK_Client_Passport" FromRole="Client" ToRole="Passport" />
+          <NavigationProperty Name="Schet" Relationship="Self.FK_Schet_Client" FromRole="Client" ToRole="Schet" />
+          <NavigationProperty Name="Zapic" Relationship="Self.FK_Zapic_Client" FromRole="Client" ToRole="Zapic" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK_Passport_Gender" FromRole="Gender" ToRole="Passport" />
+        </EntityType>
+        <EntityType Name="Graphic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_mechanic" Type="Int32" Nullable="false" />
+          <Property Name="ID_zapis" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mechanic" Relationship="Self.FK_Graphic_Mechanic" FromRole="Graphic" ToRole="Mechanic" />
+          <NavigationProperty Name="Zapic" Relationship="Self.FK_Graphic_Zapic" FromRole="Graphic" ToRole="Zapic" />
+        </EntityType>
+        <EntityType Name="Mechanic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Expireince" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Adress_STO" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_passport" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Akt" Relationship="Self.FK_Akt_Mechanic" FromRole="Mechanic" ToRole="Akt" />
+          <NavigationProperty Name="Graphic" Relationship="Self.FK_Graphic_Mechanic" FromRole="Mechanic" ToRole="Graphic" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK_Mechanic_Passport" FromRole="Mechanic" ToRole="Passport" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seria_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Administrator_Passport" FromRole="Passport" ToRole="Administrator" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Passport" FromRole="Passport" ToRole="Client" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Passport_Gender" FromRole="Passport" ToRole="Gender" />
+          <NavigationProperty Name="Mechanic" Relationship="Self.FK_Mechanic_Passport" FromRole="Passport" ToRole="Mechanic" />
+        </EntityType>
+        <EntityType Name="Schet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_akt" Type="Int32" Nullable="false" />
+          <Property Name="ID_zapchast" Type="Int32" Nullable="false" />
+          <Property Name="ID_client" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Akt" Relationship="Self.FK_Schet_Akt" FromRole="Schet" ToRole="Akt" />
+          <NavigationProperty Name="Check" Relationship="Self.FK_Check_Schet" FromRole="Schet" ToRole="Check" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Schet_Client" FromRole="Schet" ToRole="Client" />
+          <NavigationProperty Name="Zapchast" Relationship="Self.FK_Schet_Zapchast" FromRole="Schet" ToRole="Zapchast" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_pay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Check" Relationship="Self.FK_Check_Type_pay" FromRole="Type_pay" ToRole="Check" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_output" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_input" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="ID_zapchast" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Akt" Relationship="Self.FK_Akt_Zakaz" FromRole="Zakaz" ToRole="Akt" />
+          <NavigationProperty Name="Zapchast" Relationship="Self.FK_Zakaz_Zapchast" FromRole="Zakaz" ToRole="Zapchast" />
+        </EntityType>
+        <EntityType Name="Zapchast">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Serial_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Main_Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price_opt" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Schet" Relationship="Self.FK_Schet_Zapchast" FromRole="Zapchast" ToRole="Schet" />
+          <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Zapchast" FromRole="Zapchast" ToRole="Zakaz" />
+        </EntityType>
+        <EntityType Name="Zapic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_client" Type="Int32" Nullable="false" />
+          <Property Name="ID_administrator" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Zapic_Administrator" FromRole="Zapic" ToRole="Administrator" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Zapic_Client" FromRole="Zapic" ToRole="Client" />
+          <NavigationProperty Name="Graphic" Relationship="Self.FK_Graphic_Zapic" FromRole="Zapic" ToRole="Graphic" />
+        </EntityType>
+        <Association Name="FK_Administrator_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Akt_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Akt_Zakaz">
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakaz">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_zakaz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Akt">
+          <End Role="Akt" Type="Self.Akt" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Akt">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_akt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ID_auto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Schet">
+          <End Role="Schet" Type="Self.Schet" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_schet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Type_pay">
+          <End Role="Type_pay" Type="Self.Type_pay" Multiplicity="1" />
+          <End Role="Check" Type="Self.Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_pay">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="ID_type_pay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passport_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Passport" Type="Self.Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Passport">
+              <PropertyRef Name="ID_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Graphic_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
+          <End Role="Graphic" Type="Self.Graphic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Graphic">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Graphic_Zapic">
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="1" />
+          <End Role="Graphic" Type="Self.Graphic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Graphic">
+              <PropertyRef Name="ID_zapis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mechanic_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mechanic">
+              <PropertyRef Name="ID_passport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schet_Zapchast">
+          <End Role="Zapchast" Type="Self.Zapchast" Multiplicity="1" />
+          <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapchast">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schet">
+              <PropertyRef Name="ID_zapchast" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakaz_Zapchast">
+          <End Role="Zapchast" Type="Self.Zapchast" Multiplicity="1" />
+          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zapchast">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zakaz">
+              <PropertyRef Name="ID_zapchast" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Akt" EntityType="Self.Akt" />
+          <EntitySet Name="Auto" EntityType="Self.Auto" />
+          <EntitySet Name="Check" EntityType="Self.Check" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Graphic" EntityType="Self.Graphic" />
+          <EntitySet Name="Mechanic" EntityType="Self.Mechanic" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" />
+          <EntitySet Name="Schet" EntityType="Self.Schet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_pay" EntityType="Self.Type_pay" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" />
+          <EntitySet Name="Zapchast" EntityType="Self.Zapchast" />
+          <EntitySet Name="Zapic" EntityType="Self.Zapic" />
+          <AssociationSet Name="FK_Administrator_Passport" Association="Self.FK_Administrator_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Administrator" Association="Self.FK_Check_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Administrator" Association="Self.FK_Zapic_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Akt" EntitySet="Akt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Akt_Zakaz" Association="Self.FK_Akt_Zakaz">
+            <End Role="Zakaz" EntitySet="Zakaz" />
+            <End Role="Akt" EntitySet="Akt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Akt" Association="Self.FK_Schet_Akt">
+            <End Role="Akt" EntitySet="Akt" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Auto" Association="Self.FK_Client_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Schet" Association="Self.FK_Check_Schet">
+            <End Role="Schet" EntitySet="Schet" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Type_pay" Association="Self.FK_Check_Type_pay">
+            <End Role="Type_pay" EntitySet="Type_pay" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Passport" Association="Self.FK_Client_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Client" Association="Self.FK_Schet_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Client" Association="Self.FK_Zapic_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passport_Gender" Association="Self.FK_Passport_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Passport" EntitySet="Passport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Graphic_Mechanic" Association="Self.FK_Graphic_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Graphic" EntitySet="Graphic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Graphic_Zapic" Association="Self.FK_Graphic_Zapic">
+            <End Role="Zapic" EntitySet="Zapic" />
+            <End Role="Graphic" EntitySet="Graphic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mechanic_Passport" Association="Self.FK_Mechanic_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Mechanic" EntitySet="Mechanic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schet_Zapchast" Association="Self.FK_Schet_Zapchast">
+            <End Role="Zapchast" EntitySet="Zapchast" />
+            <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakaz_Zapchast" Association="Self.FK_Zakaz_Zapchast">
+            <End Role="Zapchast" EntitySet="Zapchast" />
+            <End Role="Zakaz" EntitySet="Zakaz" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище StationModelContainer" CdmEntityContainer="StationEntities">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="StationModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Adress_STO" ColumnName="Adress_STO" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID_passport" ColumnName="ID_passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Akt">
+            <EntityTypeMapping TypeName="StationModel.Akt">
+              <MappingFragment StoreEntitySet="Akt">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date_start" ColumnName="Date_start" />
+                <ScalarProperty Name="Date_end" ColumnName="Date_end" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID_mechanic" ColumnName="ID_mechanic" />
+                <ScalarProperty Name="ID_zakaz" ColumnName="ID_zakaz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="StationModel.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Year_maid" ColumnName="Year_maid" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Documentation" ColumnName="Documentation" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Check">
+            <EntityTypeMapping TypeName="StationModel.Check">
+              <MappingFragment StoreEntitySet="Check">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID_schet" ColumnName="ID_schet" />
+                <ScalarProperty Name="ID_administrator" ColumnName="ID_administrator" />
+                <ScalarProperty Name="ID_type_pay" ColumnName="ID_type_pay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="StationModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID_passport" ColumnName="ID_passport" />
+                <ScalarProperty Name="ID_auto" ColumnName="ID_auto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="StationModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graphic">
+            <EntityTypeMapping TypeName="StationModel.Graphic">
+              <MappingFragment StoreEntitySet="Graphic">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_mechanic" ColumnName="ID_mechanic" />
+                <ScalarProperty Name="ID_zapis" ColumnName="ID_zapis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mechanic">
+            <EntityTypeMapping TypeName="StationModel.Mechanic">
+              <MappingFragment StoreEntitySet="Mechanic">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Expireince" ColumnName="Expireince" />
+                <ScalarProperty Name="Adress_STO" ColumnName="Adress_STO" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID_passport" ColumnName="ID_passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="StationModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Seria_Number" ColumnName="Seria_Number" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ID_gender" ColumnName="ID_gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schet">
+            <EntityTypeMapping TypeName="StationModel.Schet">
+              <MappingFragment StoreEntitySet="Schet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID_akt" ColumnName="ID_akt" />
+                <ScalarProperty Name="ID_zapchast" ColumnName="ID_zapchast" />
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StationModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_pay">
+            <EntityTypeMapping TypeName="StationModel.Type_pay">
+              <MappingFragment StoreEntitySet="Type_pay">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakaz">
+            <EntityTypeMapping TypeName="StationModel.Zakaz">
+              <MappingFragment StoreEntitySet="Zakaz">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date_output" ColumnName="Date_output" />
+                <ScalarProperty Name="Date_input" ColumnName="Date_input" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ID_zapchast" ColumnName="ID_zapchast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zapchast">
+            <EntityTypeMapping TypeName="StationModel.Zapchast">
+              <MappingFragment StoreEntitySet="Zapchast">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+                <ScalarProperty Name="Manufacter" ColumnName="Manufacter" />
+                <ScalarProperty Name="Main_Color" ColumnName="Main_Color" />
+                <ScalarProperty Name="Price_opt" ColumnName="Price_opt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zapic">
+            <EntityTypeMapping TypeName="StationModel.Zapic">
+              <MappingFragment StoreEntitySet="Zapic">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
+                <ScalarProperty Name="ID_administrator" ColumnName="ID_administrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
