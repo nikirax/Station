@@ -77,7 +77,7 @@ namespace Station
                 }
                 else if (admin != null)
                 {
-                    AdminWindow wadmin = new AdminWindow();
+                    AdminWindow wadmin = new AdminWindow(admin);
                     wadmin.Show();
                     this.Close();
                 }

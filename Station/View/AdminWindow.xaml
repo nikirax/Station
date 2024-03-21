@@ -5,96 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Station.View"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="AdminWindow" Height="550" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="\Data\Background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.19*"/>
         </Grid.RowDefinitions>
-        <ComboBox Width="320" Height="25" Margin="0 0 5 0" HorizontalContentAlignment="Center" Name="selectData" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem IsSelected="True" Content="Список клиентов"/>
-            <ComboBoxItem Content="Список механиков"/>
-            <ComboBoxItem Content="Список администраторов"/>
-            <ComboBoxItem Content="Список записей"/>
-            <ComboBoxItem Content="График работы"/>
-            <ComboBoxItem Content="Список актов"/>
-            <ComboBoxItem Content="Список счетов"/>
-            <ComboBoxItem Content="Список чеков"/>
-        </ComboBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <StackPanel Margin="10 0">
-                <TextBlock Text="Сортировка"/>
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="SortComboBox" Width="100" Height="25" Margin="0 0 5 0"
-                              SelectionChanged="SortComboBox_SelectionChanged">
-                        <ComboBoxItem IsSelected="True" Content="нет"/>
-                        <ComboBoxItem Content="Фамилия"/>
-                        <ComboBoxItem Content="Дата регистрации"/>
-                    </ComboBox>
-                    <StackPanel>
+        <TextBlock Name="TitleBlock" Text="Добро пожаловать" VerticalAlignment="Top"/>
+        <Grid Height="95" Width="95" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0">
+            <Image Stretch="UniformToFill"
+                    Source="C:\Users\nikit.DESKTOP-3K8HP99\source\repos\Station\Station\Data\graph.png"/>
+            <Button Click="Graph_Click"
+                    Opacity="0"/>
+        </Grid>
+        <Grid Margin="0 40 0 0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Сортировка по"/>
+                        <ComboBox Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged" Margin="5 0 0 0" Width="125">
+                            <ComboBoxItem IsSelected="True" Content="нет"/>
+                            <ComboBoxItem Content="Фамилия"/>
+                            <ComboBoxItem Content="Имя"/>
+                            <ComboBoxItem Content="Отчетсво"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
                         <RadioButton Name="UpRadioButton" Content="По возрастанию"
-                                     IsChecked="True"
-                                     Checked="UpRadioButton_Checked"/>
+                     IsChecked="True"
+                     Checked="UpRadioButton_Checked"/>
                         <RadioButton Name="DownRadioButton" Content="По убыванию"
-                                     IsChecked="True"
-                                     Checked="DownRadioButton_Checked"/>
+                     IsChecked="True"
+                     Checked="DownRadioButton_Checked"/>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Margin="10 0">
-                <TextBlock Text="Поиск"/>
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="SearchComboBox" Width="134" Height="25" Margin="0 0 5 0">
-                        <ComboBoxItem IsSelected="True" Content="Фамилия"/>
-                        <ComboBoxItem Content="Имя"/>
-                        <ComboBoxItem Content="Отчество"/>
-                        <ComboBoxItem Content="Email"/>
-                        <ComboBoxItem Content="Телефон"/>
+                <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Bottom" Margin="20" Width="300">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Поиск по" Margin="0 0 20 0"/>
+                        <ComboBox Name="SearchComboBox" Width="165" HorizontalAlignment="Right" >
+                            <ComboBoxItem IsSelected="True" Content="Фамилии"/>
+                            <ComboBoxItem Content="Имени"/>
+                            <ComboBoxItem Content="Отчеству"/>
+                            <ComboBoxItem Content="Почте"/>
+                            <ComboBoxItem Content="Телефону"/>
+                            <ComboBoxItem Content="Авто"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <TextBox x:Name="SearchTextBox" Height="40" Style="{StaticResource addBox}"
+             TextChanged="SearchTextBox_TextChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Top" Margin="20">
+                    <TextBlock Text="Фильтрация"/>
+                    <ComboBox Name="FiltrComboBox"
+                         SelectionChanged="FiltrComboBox_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="Нет"/>
+                        <ComboBoxItem Content="Мужской"/>
+                        <ComboBoxItem Content="Женский"/>
                     </ComboBox>
-                    <TextBox x:Name="SearchTextBox" Width="150"
-                             TextChanged="SearchTextBox_TextChanged"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="10 0">
-                <TextBlock Text="Фильтрация"/>
-                <ComboBox Name="FiltrComboBox" Width="100" Height="25"
-                          SelectionChanged="FiltrComboBox_SelectionChanged"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
-            <Button 
-                Content="Добавить"
-                Name="AddButton"
-                Click="AddButton_Click"
-                Style="{StaticResource MainBtn}"
-                Width="140"
-                Height="45"
-                Margin="5"/>
-            <Button 
-                Content="Редактировать"
-                Name="EditButton"
-                Click="EditButton_Click"
-                Width="180"
-                Height="45"
-                Style="{StaticResource MainBtn}"
-                Margin="5"/>
-            <Button 
-                Content="Удалить"
-                Name="DelButton"
-                Click="DelButton_Click"
-                Width="140"
-                Height="45"
-                Style="{StaticResource MainBtn}"
-                Margin="5"/>
-        </StackPanel>
-        <DataGrid FontFamily="Comic Sans MS" 
-                  FontSize="12"
-                  x:Name="MainDataGrid" 
-                  Grid.Row="1"
-                  AutoGenerateColumns="True"
-                  IsReadOnly="True" Margin="0,93,0,0" Grid.RowSpan="2">
+        </Grid>
+        <DataGrid Grid.Row="2"
+          IsReadOnly="True"
+          HorizontalAlignment="Left"
+          FontFamily="Comic Sans MS" 
+          x:Name="ClientDataGrid"
+          AutoGenerateColumns="False"
+          FontSize="14"
+          Width="730">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}"/>
+                <DataGridTextColumn Header="Отчетство" Binding="{Binding MiddleName}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Passport.Gender.Name}"/>
+                <DataGridTextColumn Header="Авто" Binding="{Binding Auto.Mark}"/>
+            </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Vertical" 
+                    Grid.Row="2" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="AktBtn" Content="Работа с актами" Style="{StaticResource MainBtn}" Margin="0 20 0 20" Click="AktBtn_Click"/>
+            <Button x:Name="SchetBtn" Content="Работа со счетами" Style="{StaticResource MainBtn}" Margin="0 20 0 20" Click="SchetBtn_Click"/>
+            <Button x:Name="ClientBtn" Content="Расчет клиента" Style="{StaticResource MainBtn}" Margin="0 20 0 20" Click="ClientBtn_Click"/>
+            <Button x:Name="CardAutoBtn" Content="Карточка авто" Style="{StaticResource MainBtn}" Margin="0 20 0 20" Click="CardAutoBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
