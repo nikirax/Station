@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Station.View"
         mc:Ignorable="d"
-        Title="Личный кабинет" Height="550" Width="1000">
+        Title="Личный кабинет" Height="550" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Data/Background.jpg"/>
@@ -22,7 +22,7 @@
                Name="Avatar"/>
             <Button Click="AvatarBtn_Click" Opacity="0"/>
         </Grid>
-        <Grid Grid.Column="2" Visibility="Visible" x:Name="GridAuto">
+        <Grid Grid.Column="2" Visibility="Hidden" x:Name="GridAuto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
                 <ColumnDefinition Width="0.25*"/>
@@ -45,12 +45,12 @@
             <TextBlock Text="Год выпуска" Grid.Column="1" Grid.Row="4"/>
             <TextBlock Text="Цвет" Grid.Column="1" Grid.Row="5"/>
             <TextBlock Text="Фото" Grid.Column="1" Grid.Row="6"/>
-            <TextBox Grid.Column="2" Grid.Row="0" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Mark}"/>
-            <TextBox Grid.Column="2" Grid.Row="1" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Model}"/>
-            <TextBox Grid.Column="2" Grid.Row="2" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding VIN}"/>
-            <TextBox Grid.Column="2" Grid.Row="3" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Number}"/>
-            <TextBox Grid.Column="2" Grid.Row="4" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Year_maid}"/>
-            <TextBox Grid.Column="2" Grid.Row="5" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Color}"/>
+            <TextBox Grid.Column="2" Grid.Row="0" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Mark}" MaxLength="50"/>
+            <TextBox Grid.Column="2" Grid.Row="1" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Model}" MaxLength="50"/>
+            <TextBox Grid.Column="2" Grid.Row="2" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding VIN}" MaxLength="17" PreviewTextInput="TextBox_PreviewTextInput" CharacterCasing="Upper"/>
+            <TextBox Grid.Column="2" Grid.Row="3" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Number}" CharacterCasing="Upper" MaxLength="9" PreviewTextInput="TextBox_PreviewTextInput_1"/>
+            <TextBox Grid.Column="2" Grid.Row="4" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Year_maid}" MaxLength="4" AutomationProperties.ItemType="int" />
+            <TextBox Grid.Column="2" Grid.Row="5" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Color}" MaxLength="50"/>
             <Grid Height="70" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6">
                 <Image Stretch="UniformToFill"
                        HorizontalAlignment="Left" 
@@ -58,11 +58,41 @@
                        Name="ImageAuto"/>
                 <Button Click="AutoPhoto_Click" Opacity="0"/>
             </Grid>
-            <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal">
+            <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal" Name="Btns" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
                 <Button Content="Изменить фото" Margin="5 0 5 0" Click="ChossePhotoButton_Click" Style="{StaticResource MainBtn}"/>
                 <Button Content="Сохранить" Margin="5 0 5 0" Click="SaveBtn_Click" Name="SaveBtn" Style="{StaticResource MainBtn}"/>
                 <Button Content="Добавить" Margin="5 0 5 0" Click="AddBtn_Click" Style="{StaticResource MainBtn}"/>
                 <Button Content="Удалить" Margin="5 0 5 0" Click="DelBtn_Click" Style="{StaticResource MainBtn}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="2" Visibility="Hidden" x:Name="ZapicGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Дата и время" Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="Администратор" Grid.Column="1" Grid.Row="1"/>
+            <TextBlock Text="Адрес" Grid.Column="1" Grid.Row="2"/>
+            <TextBlock Text="Статус" Grid.Column="1" Grid.Row="3"/>
+            <TextBlock Text="Исполнитель" Grid.Column="1" Grid.Row="4"/>
+            <TextBox Grid.Column="2" Grid.Row="0" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding DateTime}" IsReadOnly="True"/>
+            <TextBox Grid.Column="2" Grid.Row="1" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Administrator.FirstName}" IsReadOnly="True"/>
+            <TextBox Grid.Column="2" Grid.Row="2" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Administrator.Adress_STO}" IsReadOnly="True"/>
+            <TextBox Grid.Column="2" Grid.Row="3" Height="55" Width="300" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Style="{StaticResource addBox}" Text="{Binding Status.Name}" IsReadOnly="True"/>
+            <TextBox Grid.Column="2" Grid.Row="4" Height="55" Width="300" HorizontalAlignment="Left" Style="{StaticResource addBox}" Text="{Binding Mechanic.FirstName}" IsReadOnly="True"/>
+            <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Удалить запись" Height="50" Margin="5 0 5 0" Click="DelBtnZapic_Click" Style="{StaticResource MainBtn}"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -12,32 +12,17 @@ namespace Station.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Mechanic
+    public partial class Status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Mechanic()
+        public Status()
         {
-            this.Akt = new HashSet<Akt>();
-            this.Graphic = new HashSet<Graphic>();
             this.Zapic = new HashSet<Zapic>();
         }
     
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string MiddleName { get; set; }
-        public string Expireince { get; set; }
-        public string Adress_STO { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int ID_passport { get; set; }
+        public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Akt> Akt { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Graphic> Graphic { get; set; }
-        public virtual Passport Passport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zapic> Zapic { get; set; }
     }

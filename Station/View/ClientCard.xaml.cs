@@ -33,13 +33,34 @@ namespace Station.View
         {
             if(_window.GridAuto.Visibility == Visibility.Visible)
                 _window.GridAuto.Visibility = Visibility.Hidden;
-            else
+            else if (_window.ZapicGrid.Visibility == Visibility.Visible)
+            {
+                _window.ZapicGrid.Visibility = Visibility.Hidden;
                 _window.GridAuto.Visibility = Visibility.Visible;
+                _window.ChangeDataContext(_window.auto, null);
+            }
+            else
+            {
+                _window.GridAuto.Visibility = Visibility.Visible;
+                _window.ChangeDataContext(_window.auto, null);
+            }
         }
 
         private void ZapicBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_window.ZapicGrid.Visibility == Visibility.Visible)
+                _window.ZapicGrid.Visibility = Visibility.Hidden;
+            else if(_window.GridAuto.Visibility == Visibility.Visible)
+            {
+                _window.GridAuto.Visibility = Visibility.Hidden;
+                _window.ZapicGrid.Visibility = Visibility.Visible;
+                _window.ChangeDataContext(null, _window.zapic);
+            }
+            else
+            {
+                _window.ZapicGrid.Visibility = Visibility.Visible;
+                _window.ChangeDataContext(null, _window.zapic);
+            }
         }
     }
 }

@@ -24,10 +24,14 @@ namespace Station.Model
         public System.DateTime DateTime { get; set; }
         public int ID_client { get; set; }
         public int ID_administrator { get; set; }
+        public int ID_status { get; set; }
+        public Nullable<int> ID_mechanic { get; set; }
     
         public virtual Administrator Administrator { get; set; }
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Graphic> Graphic { get; set; }
+        public virtual Mechanic Mechanic { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

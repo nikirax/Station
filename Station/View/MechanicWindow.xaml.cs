@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Station.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Station.View
         public MechanicWindow()
         {
             InitializeComponent();
+            MainDataGrid.ItemsSource = StationEntities.GetContext().Client.ToList();
         }
     }
 }

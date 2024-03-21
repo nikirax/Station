@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
+using System.Text.RegularExpressions;
 
 namespace Station.View
 {
@@ -26,8 +27,10 @@ namespace Station.View
         private string _selectedImagePath;
         private List<Passport> passports = StationEntities.GetContext().Passport.ToList();
         private List<Auto> autos = StationEntities.GetContext().Auto.ToList();
-        private Auto auto = new Auto();
+        public Auto auto = new Auto();
+        private Auto newauto;
         private List<Zapic> zapici = StationEntities.GetContext().Zapic.ToList();
+        public Zapic zapic;
         private Type currentPageType;
         private Client thisClient;
         public ClientWindow(Client client)
@@ -38,10 +41,18 @@ namespace Station.View
             if (passport.Photo != null)
                 Avatar.Source = new BitmapImage(new Uri($"{passport.Photo}"));
             auto = autos.FirstOrDefault(x => x.ID == client.ID_auto);
+            zapic = zapici.FirstOrDefault(x => x.ID_client == client.ID);
             if (auto.Photo != null)
                 ImageAuto.Source = new BitmapImage(new Uri($"{auto.Photo}"));
+
             thisClient = client;
-            DataContext = auto;
+        }
+        public void ChangeDataContext(Auto _auto, Zapic _zapic)
+        {
+            if (_zapic == null)
+                DataContext = auto;
+            else if (_auto == null)
+                DataContext = zapic;
         }
         private void AvatarBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -104,10 +115,20 @@ namespace Station.View
         {
             StringBuilder errors = new StringBuilder();
 
+            if (newauto != null)
+            {
+                auto = newauto;
+                auto.Client.Add(thisClient);
+            }
+
             if (string.IsNullOrWhiteSpace(auto.Mark))
                 errors.AppendLine("He задана марка автомобиля");
             if (string.IsNullOrWhiteSpace(auto.Model))
                 errors.AppendLine("He задана модель автомобиля");
+            if (string.IsNullOrWhiteSpace(auto.VIN))
+                errors.AppendLine("He задан VIN номер");
+            if (string.IsNullOrWhiteSpace(auto.Year_maid))
+                errors.AppendLine("He задан год выпуска автомобиля");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
@@ -131,12 +152,59 @@ namespace Station.View
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            newauto = new Auto();
+            DataContext = newauto;
         }
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageBox.Show("Вы действительно хотите удалить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    StationEntities.GetContext().Auto.Remove(auto);
+                    StationEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены");
+                    DataContext = auto;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+        private void DelBtnZapic_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    StationEntities.GetContext().Zapic.Remove(zapic);
+                    StationEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены");
+                    DataContext = zapic;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
 
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"[a-z0-9]"))
+            {
+                e.Handled = true; 
+            }
+        }
+
+        private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"[а-я0-9]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

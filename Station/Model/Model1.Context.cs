@@ -42,6 +42,7 @@ namespace Station.Model
         public virtual DbSet<Mechanic> Mechanic { get; set; }
         public virtual DbSet<Passport> Passport { get; set; }
         public virtual DbSet<Schet> Schet { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type_pay> Type_pay { get; set; }
         public virtual DbSet<Zakaz> Zakaz { get; set; }

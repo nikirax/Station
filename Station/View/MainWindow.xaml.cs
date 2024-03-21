@@ -34,11 +34,12 @@ namespace Station
         public static string TimeTextBox()
         {
             DateTime time = DateTime.Now;
-            if (time.Hour > 6 && time.Hour < 12)
+            time.ToString("HH:mm:ss"); 
+            if (time.Hour >= 6 && time.Hour < 12)
                 return "Доброе утро";
-            else if (time.Hour > 12 && time.Hour < 18)
+            else if (time.Hour >= 12 && time.Hour < 18)
                 return "Добрый день";
-            else if (time.Hour > 18 && time.Hour < 24)
+            else if (time.Hour >= 18 && time.Hour < 24)
                 return "Добрый вечер";
             else
                 return "Доброй ночи";
@@ -50,6 +51,16 @@ namespace Station
             return false;
         }
         private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            _Login();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                _Login();
+        }
+        private void _Login()
         {
             if (CheckVoid(Login.Text) && CheckVoid(Password.Text))
                 MessageBox.Show("Логин или пароль пустует братиш");

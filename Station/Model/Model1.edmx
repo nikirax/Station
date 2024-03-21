@@ -39,7 +39,7 @@
           <Property Name="Mark" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VIN" Type="nvarchar" MaxLength="17" Nullable="false" />
-          <Property Name="Number" Type="nvarchar" MaxLength="8" />
+          <Property Name="Number" Type="nvarchar" MaxLength="9" />
           <Property Name="Year_maid" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="Documentation" Type="nvarchar" MaxLength="100" />
@@ -120,6 +120,13 @@
           <Property Name="ID_zapchast" Type="int" Nullable="false" />
           <Property Name="ID_client" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -166,6 +173,8 @@
           <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="ID_client" Type="int" Nullable="false" />
           <Property Name="ID_administrator" Type="int" Nullable="false" />
+          <Property Name="ID_status" Type="int" Nullable="false" />
+          <Property Name="ID_mechanic" Type="int" />
         </EntityType>
         <Association Name="FK_Administrator_Passport">
           <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
@@ -383,6 +392,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Zapic_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="0..1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище StationModelContainer">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Akt" EntityType="Self.Akt" Schema="dbo" store:Type="Tables" />
@@ -394,6 +427,7 @@
           <EntitySet Name="Mechanic" EntityType="Self.Mechanic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schet" EntityType="Self.Schet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_pay" EntityType="Self.Type_pay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
@@ -471,6 +505,14 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Zapic" EntitySet="Zapic" />
           </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Mechanic" Association="Self.FK_Zapic_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Status" Association="Self.FK_Zapic_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -517,7 +559,7 @@
           <Property Name="Mark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VIN" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Number" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
           <Property Name="Year_maid" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Documentation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -590,6 +632,7 @@
           <NavigationProperty Name="Akt" Relationship="Self.FK_Akt_Mechanic" FromRole="Mechanic" ToRole="Akt" />
           <NavigationProperty Name="Graphic" Relationship="Self.FK_Graphic_Mechanic" FromRole="Mechanic" ToRole="Graphic" />
           <NavigationProperty Name="Passport" Relationship="Self.FK_Mechanic_Passport" FromRole="Mechanic" ToRole="Passport" />
+          <NavigationProperty Name="Zapic" Relationship="Self.FK_Zapic_Mechanic" FromRole="Mechanic" ToRole="Zapic" />
         </EntityType>
         <EntityType Name="Passport">
           <Key>
@@ -619,6 +662,14 @@
           <NavigationProperty Name="Check" Relationship="Self.FK_Check_Schet" FromRole="Schet" ToRole="Check" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Schet_Client" FromRole="Schet" ToRole="Client" />
           <NavigationProperty Name="Zapchast" Relationship="Self.FK_Schet_Zapchast" FromRole="Schet" ToRole="Zapchast" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zapic" Relationship="Self.FK_Zapic_Status" FromRole="Status" ToRole="Zapic" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -671,9 +722,13 @@
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ID_client" Type="Int32" Nullable="false" />
           <Property Name="ID_administrator" Type="Int32" Nullable="false" />
+          <Property Name="ID_status" Type="Int32" Nullable="false" />
+          <Property Name="ID_mechanic" Type="Int32" />
           <NavigationProperty Name="Administrator" Relationship="Self.FK_Zapic_Administrator" FromRole="Zapic" ToRole="Administrator" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Zapic_Client" FromRole="Zapic" ToRole="Client" />
           <NavigationProperty Name="Graphic" Relationship="Self.FK_Graphic_Zapic" FromRole="Zapic" ToRole="Graphic" />
+          <NavigationProperty Name="Mechanic" Relationship="Self.FK_Zapic_Mechanic" FromRole="Zapic" ToRole="Mechanic" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Zapic_Status" FromRole="Zapic" ToRole="Status" />
         </EntityType>
         <Association Name="FK_Administrator_Passport">
           <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
@@ -867,6 +922,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Zapic_Mechanic">
+          <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="0..1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mechanic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_mechanic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Schet_Zapchast">
           <End Role="Zapchast" Type="Self.Zapchast" Multiplicity="1" />
           <End Role="Schet" Type="Self.Schet" Multiplicity="*" />
@@ -876,6 +943,18 @@
             </Principal>
             <Dependent Role="Schet">
               <PropertyRef Name="ID_zapchast" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapic_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Zapic" Type="Self.Zapic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zapic">
+              <PropertyRef Name="ID_status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -902,6 +981,7 @@
           <EntitySet Name="Mechanic" EntityType="Self.Mechanic" />
           <EntitySet Name="Passport" EntityType="Self.Passport" />
           <EntitySet Name="Schet" EntityType="Self.Schet" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type_pay" EntityType="Self.Type_pay" />
           <EntitySet Name="Zakaz" EntityType="Self.Zakaz" />
@@ -971,9 +1051,17 @@
             <End Role="Passport" EntitySet="Passport" />
             <End Role="Mechanic" EntitySet="Mechanic" />
           </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Mechanic" Association="Self.FK_Zapic_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
+            <End Role="Zapic" EntitySet="Zapic" />
+          </AssociationSet>
           <AssociationSet Name="FK_Schet_Zapchast" Association="Self.FK_Schet_Zapchast">
             <End Role="Zapchast" EntitySet="Zapchast" />
             <End Role="Schet" EntitySet="Schet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapic_Status" Association="Self.FK_Zapic_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Zapic" EntitySet="Zapic" />
           </AssociationSet>
           <AssociationSet Name="FK_Zakaz_Zapchast" Association="Self.FK_Zakaz_Zapchast">
             <End Role="Zapchast" EntitySet="Zapchast" />
@@ -1111,6 +1199,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="StationModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="StationModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1160,6 +1256,8 @@
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="ID_client" ColumnName="ID_client" />
                 <ScalarProperty Name="ID_administrator" ColumnName="ID_administrator" />
+                <ScalarProperty Name="ID_status" ColumnName="ID_status" />
+                <ScalarProperty Name="ID_mechanic" ColumnName="ID_mechanic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

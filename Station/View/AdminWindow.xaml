@@ -5,8 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Station.View"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="AdminWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1.8*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Width="320" Height="25" Margin="0 0 5 0" HorizontalContentAlignment="Center" Name="selectData" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem IsSelected="True" Content="Список клиентов"/>
+            <ComboBoxItem Content="Список механиков"/>
+            <ComboBoxItem Content="Список администраторов"/>
+            <ComboBoxItem Content="Список записей"/>
+            <ComboBoxItem Content="График работы"/>
+            <ComboBoxItem Content="Список актов"/>
+            <ComboBoxItem Content="Список счетов"/>
+            <ComboBoxItem Content="Список чеков"/>
+        </ComboBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Margin="10 0">
+                <TextBlock Text="Сортировка"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="SortComboBox" Width="100" Height="25" Margin="0 0 5 0"
+                              SelectionChanged="SortComboBox_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="нет"/>
+                        <ComboBoxItem Content="Фамилия"/>
+                        <ComboBoxItem Content="Дата регистрации"/>
+                    </ComboBox>
+                    <StackPanel>
+                        <RadioButton Name="UpRadioButton" Content="По возрастанию"
+                                     IsChecked="True"
+                                     Checked="UpRadioButton_Checked"/>
+                        <RadioButton Name="DownRadioButton" Content="По убыванию"
+                                     IsChecked="True"
+                                     Checked="DownRadioButton_Checked"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10 0">
+                <TextBlock Text="Поиск"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="SearchComboBox" Width="134" Height="25" Margin="0 0 5 0">
+                        <ComboBoxItem IsSelected="True" Content="Фамилия"/>
+                        <ComboBoxItem Content="Имя"/>
+                        <ComboBoxItem Content="Отчество"/>
+                        <ComboBoxItem Content="Email"/>
+                        <ComboBoxItem Content="Телефон"/>
+                    </ComboBox>
+                    <TextBox x:Name="SearchTextBox" Width="150"
+                             TextChanged="SearchTextBox_TextChanged"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10 0">
+                <TextBlock Text="Фильтрация"/>
+                <ComboBox Name="FiltrComboBox" Width="100" Height="25"
+                          SelectionChanged="FiltrComboBox_SelectionChanged"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+            <Button 
+                Content="Добавить"
+                Name="AddButton"
+                Click="AddButton_Click"
+                Style="{StaticResource MainBtn}"
+                Width="140"
+                Height="45"
+                Margin="5"/>
+            <Button 
+                Content="Редактировать"
+                Name="EditButton"
+                Click="EditButton_Click"
+                Width="180"
+                Height="45"
+                Style="{StaticResource MainBtn}"
+                Margin="5"/>
+            <Button 
+                Content="Удалить"
+                Name="DelButton"
+                Click="DelButton_Click"
+                Width="140"
+                Height="45"
+                Style="{StaticResource MainBtn}"
+                Margin="5"/>
+        </StackPanel>
+        <DataGrid FontFamily="Comic Sans MS" 
+                  FontSize="12"
+                  x:Name="MainDataGrid" 
+                  Grid.Row="1"
+                  AutoGenerateColumns="True"
+                  IsReadOnly="True" Margin="0,93,0,0" Grid.RowSpan="2">
+        </DataGrid>
     </Grid>
 </Window>
