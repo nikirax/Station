@@ -20,12 +20,12 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="5">
             <TextBlock Text="Поиск по" Margin="0 0 20 0"/>
             <ComboBox Name="SearchComboBox" Width="165" HorizontalAlignment="Right">
-                <ComboBoxItem IsSelected="True" Content="Клиенту"/>
-                <ComboBoxItem Content="Механику"/>
-                <ComboBoxItem Content="Времени"/>
-                <ComboBoxItem Content="Телефону"/>
-                <ComboBoxItem Content="Почте"/>
-                <ComboBoxItem Content="Авто"/>
+                <ComboBoxItem IsSelected="True" Content="Номеру"/>
+                <ComboBoxItem Content="Работам"/>
+                <ComboBoxItem Content="Цене работ"/>
+                <ComboBoxItem Content="Запчасти"/>
+                <ComboBoxItem Content="Цене запчасти"/>
+                <ComboBoxItem Content="Дате"/>
             </ComboBox>
             <TextBox x:Name="SearchTextBox" Width="400" Height="40" Margin="10 0 0 0"
         TextChanged="SearchTextBox_TextChanged" Style="{StaticResource addBox}"/>
@@ -43,7 +43,7 @@
       AutoGenerateColumns="False"
       FontSize="14">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="№" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Проведенные работы" Binding="{Binding Akt.About}"/>
                 <DataGridTextColumn Header="Цена работ" Binding="{Binding Akt.Price}"/>
                 <DataGridTextColumn Header="Запчасти" Binding="{Binding Zapchast.Name}"/>

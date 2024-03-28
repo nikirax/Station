@@ -4,28 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="762b4d0b0f1342c19c1051bbe3bd0fff" Name="Diagram1">
-        <EntityTypeShape EntityType="StationModel.Administrator" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Akt" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+      <Diagram DiagramId="ef7506de561745d4a1f6bd6e8a573ac7" Name="Diagram1">
+        <EntityTypeShape EntityType="StationModel.Administrator" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Akt" Width="1.5" PointX="12.5" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="StationModel.Auto" Width="1.5" PointX="8" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Check" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Check" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StationModel.Client" Width="1.5" PointX="10.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Gender" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Graphic" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Mechanic" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Gender" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Graphic" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Mechanic" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="StationModel.Passport" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Schet" Width="1.5" PointX="12.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Status" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Schet" Width="1.5" PointX="14.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Status" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StationModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Type_pay" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Zakaz" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Zapchast" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="StationModel.Zapic" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Type_pay" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Zakaz" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Zapchast" Width="1.5" PointX="12.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StationModel.Zapic" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
         <AssociationConnector Association="StationModel.FK_Administrator_Passport" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Check_Administrator" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Zapic_Administrator" ManuallyRouted="false" />
+        <AssociationConnector Association="StationModel.FK_Akt_Client" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Akt_Mechanic" ManuallyRouted="false" />
-        <AssociationConnector Association="StationModel.FK_Akt_Zakaz" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Schet_Akt" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Client_Auto" ManuallyRouted="false" />
         <AssociationConnector Association="StationModel.FK_Check_Schet" ManuallyRouted="false" />

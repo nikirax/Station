@@ -29,7 +29,7 @@
           <Property Name="About" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="ID_mechanic" Type="int" Nullable="false" />
-          <Property Name="ID_zakaz" Type="int" Nullable="false" />
+          <Property Name="ID_client" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Auto">
           <Key>
@@ -188,6 +188,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Akt_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Akt_Mechanic">
           <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
           <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
@@ -197,18 +209,6 @@
             </Principal>
             <Dependent Role="Akt">
               <PropertyRef Name="ID_mechanic" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Akt_Zakaz">
-          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="1" />
-          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zakaz">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Akt">
-              <PropertyRef Name="ID_zakaz" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,12 +437,12 @@
             <End Role="Passport" EntitySet="Passport" />
             <End Role="Administrator" EntitySet="Administrator" />
           </AssociationSet>
-          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
-            <End Role="Mechanic" EntitySet="Mechanic" />
+          <AssociationSet Name="FK_Akt_Client" Association="Self.FK_Akt_Client">
+            <End Role="Client" EntitySet="Client" />
             <End Role="Akt" EntitySet="Akt" />
           </AssociationSet>
-          <AssociationSet Name="FK_Akt_Zakaz" Association="Self.FK_Akt_Zakaz">
-            <End Role="Zakaz" EntitySet="Zakaz" />
+          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
             <End Role="Akt" EntitySet="Akt" />
           </AssociationSet>
           <AssociationSet Name="FK_Check_Administrator" Association="Self.FK_Check_Administrator">
@@ -546,9 +546,9 @@
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="ID_mechanic" Type="Int32" Nullable="false" />
-          <Property Name="ID_zakaz" Type="Int32" Nullable="false" />
+          <Property Name="ID_client" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Akt_Client" FromRole="Akt" ToRole="Client" />
           <NavigationProperty Name="Mechanic" Relationship="Self.FK_Akt_Mechanic" FromRole="Akt" ToRole="Mechanic" />
-          <NavigationProperty Name="Zakaz" Relationship="Self.FK_Akt_Zakaz" FromRole="Akt" ToRole="Zakaz" />
           <NavigationProperty Name="Schet" Relationship="Self.FK_Schet_Akt" FromRole="Akt" ToRole="Schet" />
         </EntityType>
         <EntityType Name="Auto">
@@ -592,6 +592,7 @@
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID_passport" Type="Int32" Nullable="false" />
           <Property Name="ID_auto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Akt" Relationship="Self.FK_Akt_Client" FromRole="Client" ToRole="Akt" />
           <NavigationProperty Name="Auto" Relationship="Self.FK_Client_Auto" FromRole="Client" ToRole="Auto" />
           <NavigationProperty Name="Passport" Relationship="Self.FK_Client_Passport" FromRole="Client" ToRole="Passport" />
           <NavigationProperty Name="Schet" Relationship="Self.FK_Schet_Client" FromRole="Client" ToRole="Schet" />
@@ -698,7 +699,6 @@
           <Property Name="Date_input" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="ID_zapchast" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Akt" Relationship="Self.FK_Akt_Zakaz" FromRole="Zakaz" ToRole="Akt" />
           <NavigationProperty Name="Zapchast" Relationship="Self.FK_Zakaz_Zapchast" FromRole="Zakaz" ToRole="Zapchast" />
         </EntityType>
         <EntityType Name="Zapchast">
@@ -766,6 +766,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Akt_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Akt">
+              <PropertyRef Name="ID_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Akt_Mechanic">
           <End Role="Mechanic" Type="Self.Mechanic" Multiplicity="1" />
           <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
@@ -775,18 +787,6 @@
             </Principal>
             <Dependent Role="Akt">
               <PropertyRef Name="ID_mechanic" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Akt_Zakaz">
-          <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="1" />
-          <End Role="Akt" Type="Self.Akt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zakaz">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Akt">
-              <PropertyRef Name="ID_zakaz" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -999,12 +999,12 @@
             <End Role="Administrator" EntitySet="Administrator" />
             <End Role="Zapic" EntitySet="Zapic" />
           </AssociationSet>
-          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
-            <End Role="Mechanic" EntitySet="Mechanic" />
+          <AssociationSet Name="FK_Akt_Client" Association="Self.FK_Akt_Client">
+            <End Role="Client" EntitySet="Client" />
             <End Role="Akt" EntitySet="Akt" />
           </AssociationSet>
-          <AssociationSet Name="FK_Akt_Zakaz" Association="Self.FK_Akt_Zakaz">
-            <End Role="Zakaz" EntitySet="Zakaz" />
+          <AssociationSet Name="FK_Akt_Mechanic" Association="Self.FK_Akt_Mechanic">
+            <End Role="Mechanic" EntitySet="Mechanic" />
             <End Role="Akt" EntitySet="Akt" />
           </AssociationSet>
           <AssociationSet Name="FK_Schet_Akt" Association="Self.FK_Schet_Akt">
@@ -1098,7 +1098,7 @@
                 <ScalarProperty Name="About" ColumnName="About" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ID_mechanic" ColumnName="ID_mechanic" />
-                <ScalarProperty Name="ID_zakaz" ColumnName="ID_zakaz" />
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

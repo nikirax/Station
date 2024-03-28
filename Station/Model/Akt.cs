@@ -26,10 +26,10 @@ namespace Station.Model
         public string About { get; set; }
         public double Price { get; set; }
         public int ID_mechanic { get; set; }
-        public int ID_zakaz { get; set; }
+        public int ID_client { get; set; }
     
+        public virtual Client Client { get; set; }
         public virtual Mechanic Mechanic { get; set; }
-        public virtual Zakaz Zakaz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schet> Schet { get; set; }
     }

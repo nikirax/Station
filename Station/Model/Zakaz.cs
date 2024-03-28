@@ -14,20 +14,12 @@ namespace Station.Model
     
     public partial class Zakaz
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Zakaz()
-        {
-            this.Akt = new HashSet<Akt>();
-        }
-    
         public int ID { get; set; }
         public System.DateTime Date_output { get; set; }
         public System.DateTime Date_input { get; set; }
         public int Count { get; set; }
         public int ID_zapchast { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Akt> Akt { get; set; }
         public virtual Zapchast Zapchast { get; set; }
     }
 }

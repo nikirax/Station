@@ -121,8 +121,14 @@ namespace Station.View
 
         private void AktBtn_Click(object sender, RoutedEventArgs e)
         {
-            AktWindow wact = new AktWindow();
-            wact.Show();
+            if (ClientDataGrid.SelectedItem != null)
+            {
+                AktWindow wact = new AktWindow(_admin, ClientDataGrid.SelectedItem as Client);
+                wact.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Выберете клиента у которого хотите редактировать счета");
         }
 
         private void SchetBtn_Click(object sender, RoutedEventArgs e)

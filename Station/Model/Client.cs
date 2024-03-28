@@ -17,6 +17,7 @@ namespace Station.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.Akt = new HashSet<Akt>();
             this.Schet = new HashSet<Schet>();
         }
     
@@ -30,6 +31,8 @@ namespace Station.Model
         public int ID_passport { get; set; }
         public int ID_auto { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Akt> Akt { get; set; }
         public virtual Auto Auto { get; set; }
         public virtual Passport Passport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
