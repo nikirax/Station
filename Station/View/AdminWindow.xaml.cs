@@ -128,7 +128,7 @@ namespace Station.View
                 this.Close();
             }
             else
-                MessageBox.Show("Выберете клиента у которого хотите редактировать счета");
+                MessageBox.Show("Выберете клиента у которого хотите редактировать акт");
         }
 
         private void SchetBtn_Click(object sender, RoutedEventArgs e)
@@ -145,8 +145,14 @@ namespace Station.View
 
         private void ClientBtn_Click(object sender, RoutedEventArgs e)
         {
-            ClientPayWindow wclientpay = new ClientPayWindow();
-            wclientpay.Show();
+            if (ClientDataGrid.SelectedItem != null)
+            {
+                ClientPayWindow wclientpay = new ClientPayWindow(_admin, ClientDataGrid.SelectedItem as Client);
+                wclientpay.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Выберете клиента у которого хотите редактировать чек");
         }
 
         private void CardAutoBtn_Click(object sender, RoutedEventArgs e)
@@ -158,7 +164,7 @@ namespace Station.View
                 this.Close();
             }
             else
-                MessageBox.Show("Выберете клиента у которого хотите редактировать счета");
+                MessageBox.Show("Выберете клиента у которого хотите редактировать авто");
         }
         private void UpRadioButton_Checked(object sender, RoutedEventArgs e)
         {

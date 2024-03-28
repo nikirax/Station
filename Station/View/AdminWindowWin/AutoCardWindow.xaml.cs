@@ -122,6 +122,7 @@ namespace Station.View.AdminWindowWin
             }
             try
             {
+                auto.Photo = ImageAuto.Source.ToString();
                 StationEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
             }

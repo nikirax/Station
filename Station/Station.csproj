@@ -163,6 +163,9 @@
     <Compile Include="View\AdminWindowWin\ClientPayWindow.xaml.cs">
       <DependentUpon>ClientPayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AdminWindowWin\ClientWindowWin\AddEditCheck.xaml.cs">
+      <DependentUpon>AddEditCheck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminWindowWin\GraphicWindow.xaml.cs">
       <DependentUpon>GraphicWindow.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminWindowWin\ClientPayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminWindowWin\ClientWindowWin\AddEditCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

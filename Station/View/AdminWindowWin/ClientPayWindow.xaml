@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Station.View.AdminWindowWin"
         mc:Ignorable="d"
-        Title="ClientPayWindow" Height="450" Width="800">
+        Title="ClientPayWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="\Data\Background.jpg" Stretch="UniformToFill"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.12*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.12*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Список чеков" Grid.Row="0"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="5">
+                <TextBlock Text="Поиск по" Margin="0 0 20 0"/>
+                <ComboBox Name="SearchComboBox" Width="165" HorizontalAlignment="Right">
+                    <ComboBoxItem IsSelected="True" Content="Номеру"/>
+                    <ComboBoxItem Content="Дате"/>
+                    <ComboBoxItem Content="Номеру администратора"/>
+                    <ComboBoxItem Content="Номеру счета"/>
+                    <ComboBoxItem Content="Типу оплате"/>
+                </ComboBox>
+                <TextBox x:Name="SearchTextBox" Width="400" Height="40" Margin="10 0 0 0"
+  TextChanged="SearchTextBox_TextChanged" Style="{StaticResource addBox}"/>
+                <Grid HorizontalAlignment="Right" Margin="10 0 0 0">
+                    <Image Stretch="UniformToFill"
+  Source="C:\Users\nikit.DESKTOP-3K8HP99\source\repos\Station\Station\Data\refresh.png"/>
+                    <Button Click="Refresh_Click"
+  Opacity="0"/>
+                </Grid>
+            </StackPanel>
+            <DataGrid Grid.Row="2"
+IsReadOnly="True"
+FontFamily="Comic Sans MS" 
+x:Name="CheckDataGrid"
+AutoGenerateColumns="False"
+FontSize="14">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Дата оформления" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Номер счета" Binding="{Binding ID_schet}"/>
+                    <DataGridTextColumn Header="Номер Администратора" Binding="{Binding ID_administrator}"/>
+                    <DataGridTextColumn Header="Администратор" Binding="{Binding Administrator.SecondName}"/>
+                    <DataGridTextColumn Header="Тип оплаты" Binding="{Binding Type_pay.Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Style="{StaticResource MainBtn}" Content="Добавить/Редактировать акт" Margin="5" Grid.Row="3" HorizontalAlignment="Center" Click="Check_Click"/>
+            <Button Style="{StaticResource MainBtn}" Content="Вернуться" Margin="5" Width="150" Grid.Row="3" HorizontalAlignment="Left" Click="BackBtn_Click"/>
+            <Button Style="{StaticResource MainBtn}" Content="Удалить" Margin="5" Width="150" Grid.Row="3" HorizontalAlignment="Right" Click="DelBtn_Click"/>
+        </Grid>
     </Grid>
 </Window>
