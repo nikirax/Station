@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="GraphicWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="\Data\Background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

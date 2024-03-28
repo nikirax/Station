@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Station.View"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="550" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="Окно Администратора" Height="550" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="\Data\Background.jpg" Stretch="UniformToFill"/>
@@ -60,11 +60,7 @@
                 <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Top" Margin="20">
                     <TextBlock Text="Фильтрация"/>
                     <ComboBox Name="FiltrComboBox"
-                         SelectionChanged="FiltrComboBox_SelectionChanged">
-                        <ComboBoxItem IsSelected="True" Content="Нет"/>
-                        <ComboBoxItem Content="Мужской"/>
-                        <ComboBoxItem Content="Женский"/>
-                    </ComboBox>
+                         SelectionChanged="FiltrComboBox_SelectionChanged"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

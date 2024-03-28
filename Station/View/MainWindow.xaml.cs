@@ -91,5 +91,10 @@ namespace Station
                     MessageBox.Show("Дальше не пущу :(");
             }
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

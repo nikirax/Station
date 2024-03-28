@@ -28,6 +28,7 @@
                      Margin="24"
                      Name="Password" ToolTip="Пароль"
                      />
+            <CheckBox Content="Запомнить меня" HorizontalAlignment="Center" Checked="CheckBox_Checked"/>
         </StackPanel>
         <Button Content="Войти" 
                 VerticalAlignment="Bottom" 

@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date_start" Type="datetime" Nullable="false" />
           <Property Name="Date_end" Type="datetime" Nullable="false" />
           <Property Name="About" Type="nvarchar(max)" Nullable="false" />
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="ID_schet" Type="int" Nullable="false" />
           <Property Name="ID_administrator" Type="int" Nullable="false" />
@@ -80,7 +80,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_mechanic" Type="int" Nullable="false" />
           <Property Name="ID_zapis" Type="int" Nullable="false" />
         </EntityType>
@@ -114,7 +114,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="ID_akt" Type="int" Nullable="false" />
           <Property Name="ID_zapchast" Type="int" Nullable="false" />
@@ -141,14 +141,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Zakaz">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date_output" Type="datetime" Nullable="false" />
           <Property Name="Date_input" Type="datetime" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
@@ -158,7 +158,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Serial_Number" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Manufacter" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -540,7 +540,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date_start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_end" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -570,7 +570,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ID_schet" Type="Int32" Nullable="false" />
           <Property Name="ID_administrator" Type="Int32" Nullable="false" />
@@ -609,7 +609,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_mechanic" Type="Int32" Nullable="false" />
           <Property Name="ID_zapis" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Mechanic" Relationship="Self.FK_Graphic_Mechanic" FromRole="Graphic" ToRole="Mechanic" />
@@ -653,7 +653,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ID_akt" Type="Int32" Nullable="false" />
           <Property Name="ID_zapchast" Type="Int32" Nullable="false" />
@@ -685,7 +685,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_Check_Type_pay" FromRole="Type_pay" ToRole="Check" />
         </EntityType>
@@ -693,7 +693,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date_output" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_input" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Count" Type="Int32" Nullable="false" />
@@ -705,7 +705,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Serial_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Manufacter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />

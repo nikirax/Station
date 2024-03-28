@@ -31,7 +31,46 @@ namespace Station.View.AdminWindowWin
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            List<Zapic> zapics = StationEntities.GetContext().Zapic.ToList();
+            if (ZapicDataGrid != null)
+            {
+                zapics = StationEntities.GetContext().Zapic.ToList();
+                ZapicDataGrid.ItemsSource = StationEntities.GetContext().Client.ToList();
+                switch (SearchComboBox.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            zapics = zapics.Where(x => x.Client.SecondName.ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                    case 1:
+                        {
+                            zapics = zapics.Where(x => x.Mechanic.SecondName.ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                    case 2:
+                        {
+                            zapics = zapics.Where(x => x.DateTime.ToString().ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                    case 3:
+                        {
+                            zapics = zapics.Where(x => x.Client.Phone.ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                    case 4:
+                        {
+                            zapics = zapics.Where(x => x.Client.Email.ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                    case 5:
+                        {
+                            zapics = zapics.Where(x => x.Client.Auto.Mark.ToLower().StartsWith(SearchTextBox.Text.ToLower())).ToList();
+                            break;
+                        }
+                }
+                ZapicDataGrid.ItemsSource = zapics;
+            }
         }
     }
 }

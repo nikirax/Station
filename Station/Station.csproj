@@ -166,6 +166,9 @@
     <Compile Include="View\AdminWindowWin\SchetWindow.xaml.cs">
       <DependentUpon>SchetWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AdminWindowWin\SchetWindowWin\AddEditSchet.xaml.cs">
+      <DependentUpon>AddEditSchet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientWindowWin\ClientCard.xaml.cs">
       <DependentUpon>ClientCard.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminWindowWin\SchetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminWindowWin\SchetWindowWin\AddEditSchet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -270,7 +277,19 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\refresh.png" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\graph.png" />
     <Resource Include="Data\PhotoPassport\10.jpg" />
@@ -313,16 +332,6 @@
     <Resource Include="Data\PhotoAuto\Supra.jpg" />
     <Resource Include="Data\PhotoAuto\Tiguan.jpg" />
     <Resource Include="Data\PhotoPassport\1.jpg" />
-    <Content Include="Model\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
