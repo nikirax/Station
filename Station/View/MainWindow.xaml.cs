@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Station
 {
@@ -25,10 +26,22 @@ namespace Station
         private List<Client> clients = StationEntities.GetContext().Client.ToList();
         private List<Administrator> administrators = StationEntities.GetContext().Administrator.ToList();
         private List<Mechanic> mechanics = StationEntities.GetContext().Mechanic.ToList();
+        XmlDocument xmlDoc = new XmlDocument();
+        XmlElement xRoot;
         public MainWindow()
         {
             InitializeComponent();
             HelloTXT.Text = TimeTextBox();
+            xmlDoc.Load("C:\\Users\\nikit.DESKTOP-3K8HP99\\source\\repos\\Station\\Station\\Data\\user.xml");
+            xRoot = xmlDoc.DocumentElement;
+
+            foreach (XmlNode childnode in xRoot)
+            {
+                if (childnode.Name == "Name")
+                    Login.Text = childnode.InnerText;
+                if (childnode.Name == "Password")
+                    Password.Text = childnode.InnerText;
+            }
         }
 
         public static string TimeTextBox()
@@ -66,6 +79,17 @@ namespace Station
                 MessageBox.Show("Логин или пароль пустует братиш");
             else
             {
+                if (Check.IsChecked == true)
+                {
+                    foreach (XmlNode childnode in xRoot)
+                    {
+                        if (childnode.Name == "Name")
+                            childnode.InnerText = Login.Text;
+                        if (childnode.Name == "Password")
+                            childnode.InnerText = Password.Text;
+                    }
+                    xmlDoc.Save("C:\\Users\\nikit.DESKTOP-3K8HP99\\source\\repos\\Station\\Station\\Data\\user.xml");
+                }
                 var client = clients.FirstOrDefault(x => x.Email.ToLower() == Login.Text.ToLower() && x.Password == Password.Text);
                 var admin = administrators.FirstOrDefault(x => x.Email.ToLower() == Login.Text.ToLower() && x.Password == Password.Text);
                 var mechanic = mechanics.FirstOrDefault(x => x.Email.ToLower() == Login.Text.ToLower() && x.Password == Password.Text);
@@ -94,7 +118,7 @@ namespace Station
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

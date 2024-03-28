@@ -151,8 +151,14 @@ namespace Station.View
 
         private void CardAutoBtn_Click(object sender, RoutedEventArgs e)
         {
-            AutoCardWindow wautocard = new AutoCardWindow();
-            wautocard.Show();
+            if (ClientDataGrid.SelectedItem != null)
+            {
+                AutoCardWindow wautocard = new AutoCardWindow(_admin, ClientDataGrid.SelectedItem as Client);
+                wautocard.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Выберете клиента у которого хотите редактировать счета");
         }
         private void UpRadioButton_Checked(object sender, RoutedEventArgs e)
         {
